@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 12 00px;
+    }
+  </style>
+  <title>Top 5 hiking trails!</title>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  var map = L.map('map').setView([44.5646, -123.2620], 13); // Corvallis, Oregon coordinates
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+
+  var trailData = [
+    { name: 'Calloway Creek Trail', coordinates: [44.668, -123.223], description: '3.2 miles long, this is a loop with 380 ft of elevation gain that isnt to hard.' },
+    { name: 'Dans Trail', coordinates: [44.609, -123.283], description: '6.8 miles long by going out and back theres 1500ft in elevation gain and is a little more difficult with more views.'},
+    { name: 'Bald hill trail', coordinates: [44.566, -123.334], description: '2.7 mile looping trail with 400ft of elevation, not difficult but still has lots of views.' },
+    { name: 'Vineyard Mountain Loop', coordinates: [44.641, -123.275], description: '3.3 mile loop with 500 ft of elevation gain on this moderately difficult hour and a half hike.' },
+    { name: 'Section 36 loop', coordinates: [44.657, -123.235], description: '4.1 mile loop with 1000ft in elevation gain in this moderatly challengeing trail you will find wildlife watchers.' },
+
+  ];
+
+  trailData.forEach(function(trail) {
+    L.marker(trail.coordinates).addTo(map)
+      .bindPopup('<b>' + trail.name + '</b><br>' + trail.description);
+  });
+
+</script>
+
+</body>
+</html>
